@@ -43,18 +43,19 @@ public class EcommApplication implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
        _sellerRepository.getById(12l);
-
+/*
         Customer dean = new Customer();
         dean.setName("Dean");
         Profile deanProfile = new Profile(dean, "Dean", "Winchester", Gender.Male, UserType.Customer);
         deanProfile.setBirthday(new SimpleDateFormat("MM/dd/yyyy").parse("12/26/1996"));
         deanProfile.setEmailAddress("deanWinch@demo.com");
         dean.setProfile(deanProfile);
-        dean = _customerRepository.save(dean);
+        dean = _customerRepository.save(dean);*/
 
 
         //--------------Create two sellers-----------------------------------------
-        Seller judy = new Seller("Judy's account id = 879");
+        Seller judy = new Seller();
+        judy.setAccountId("Judy's account id = 879");
         Profile judyProfile = new Profile(judy, "Judy", "Adams", Gender.Female, UserType.Seller);
         judyProfile.setBirthday(new SimpleDateFormat("MM/dd/yyyy").parse(("4/12/2010")));
         judyProfile.setEmailAddress("hi@demo.com");
@@ -62,7 +63,8 @@ public class EcommApplication implements CommandLineRunner {
         judy = _sellerRepository.save(judy);
 
 
-        Seller michael = new Seller("Micheal's account id = 023");
+        Seller michael = new Seller();
+        michael.setAccountId("Micheal's account id = 023");
         Profile michaelProfile = new Profile(michael, "Michael", "Martin", Gender.Male, UserType.Seller);
         michaelProfile.setEmailAddress("hi@demo.com");
         michael.setProfile(michaelProfile);

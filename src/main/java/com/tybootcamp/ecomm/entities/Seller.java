@@ -1,27 +1,28 @@
 package com.tybootcamp.ecomm.entities;
 
+import com.tybootcamp.ecomm.enums.UserType;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@DiscriminatorValue("seller")
+@DiscriminatorValue(value = "seller")
 public class Seller extends User
 {
+    @Enumerated(value = EnumType.STRING)
+    private UserType userType;
     @Column
     @NotNull
     private String accountId;
 
 
+
     public Seller()
     {
-        super();
     }
 
-    public Seller(String accountId)
-    {
-        this.accountId = accountId;
 
-    }
+
 
 
     public String getAccountId()

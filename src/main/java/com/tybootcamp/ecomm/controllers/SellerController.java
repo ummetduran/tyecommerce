@@ -40,7 +40,8 @@ public class SellerController {
     @PostMapping(path = "/")
     public ResponseEntity<Seller> addNewSeller(@Valid @RequestBody Seller seller)
     {
-        Seller sellerEntity = new Seller(seller.getAccountId());
+        Seller sellerEntity = new Seller();
+        sellerEntity.setAccountId(seller.getAccountId());
         Profile profile = new Profile(sellerEntity, seller.getProfile().getFirstName(), seller.getProfile().getLastName(), seller.getProfile().getGender(), seller.getProfile().getUserType());
         sellerEntity.setProfile(profile);
         sellerEntity.getProfile().setWebsite(seller.getProfile().getWebsite());

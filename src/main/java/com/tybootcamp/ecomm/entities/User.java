@@ -4,15 +4,27 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name= "User_Type")
+@DiscriminatorColumn(name = "user_type")
 public abstract class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable=false)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "profile", orphanRemoval = true)
     private Profile profile;
+
+    public User(Profile profile) {
+        this.profile = profile;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
 
     public User() {
     }
@@ -23,14 +35,6 @@ public abstract class User {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
     }
 
     @Override
@@ -45,4 +49,5 @@ public abstract class User {
             return getProfile().getFirstName() + " " + getProfile().getLastName();
         }
     }
+
 }
